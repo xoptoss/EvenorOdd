@@ -1,9 +1,6 @@
 package mainPackage;
-
 import java.util.Random;
 import java.util.Scanner;
-
-import javax.swing.JOptionPane;
 
 public class mainClass {
 
@@ -11,21 +8,22 @@ public class mainClass {
 
 		int numberGen;
 		int win=0;
+		int total=0;
 		int lose=0;
 		String guess=" ";
 		String input;
-		Boolean replay, even;
+		Boolean replay, even, x, y;
 		Random random = new Random();
-		numberGen =	random.nextInt(99)+1;
-
-		replay=true;
+		
 
 		do{
+			total++;
 			System.out.println("Im thinking of a number.. can you guess if its even or odd?");
 			Scanner tKeyboard = new Scanner(System.in);
+			numberGen = random.nextInt(9);
 			guess = tKeyboard.nextLine();
 
-			if(numberGen % 2 == 0)
+			if(numberGen %2 == 0)
 			{
 				even = true;//even
 			}
@@ -33,61 +31,75 @@ public class mainClass {
 			{
 				even = false;//odd
 			}
+			do{
+				switch(guess.toLowerCase()) {
 
-			switch(guess.toLowerCase()) {
+				case "even":
+					if(even=true)
+					{
+						System.out.println("good Job! You were right!");
+						win++;
+						y=true;
+					}
+					else
+					{
+						System.out.println("Aww! You were wrong!");
+						lose++;
+						y=true;
+					}
+					break;
+				case"odd":
+					if(even=true)
+					{
+						System.out.println("Aww! You were Wrong!");
+						lose++;
+						y=true;
+					}
+					else
+					{
+						System.out.println("Good Job! You were right!");
+						win++;
+						y=true;
+					}
+					break;
+				default:
+				{
+					System.out.println("Not a choice");
+					y=false;
+					break;
+				}
+				}
+			}while(y=false);
 
-			case "even":
-				if(even=true)
-				{
-					System.out.println("good Job! You were right!");
-					win++;
-				}
-				else
-				{
-					System.out.println("Aww! You were wrong!");
-					lose++;
-				}
-				break;
-			case"odd":
-				if(even=true)
-				{
-					System.out.println("Aww! You were Wrong!");
-					lose++;
-				}
-				else
-				{
-					System.out.println("Good Job! You were right!");
-					win++;				
-				}
-				break;
-			default:
-			{
-				System.out.println("Not a choice");
-			}
-			
-			}
-			System.out.printf("The score is:Wins-%d Loses-%d\n",win, lose);
+			System.out.printf("The score is-Wins:%d Loses:%d out of %d games \n",win, lose, total);
 			System.out.println("Would you like to play agian?");
 			input = tKeyboard.nextLine();
+			do{
+				switch(input.toLowerCase()) 
+				{
 
-			switch(input.toLowerCase()) {
+				case"yes":
+				{
+					replay=true;
+					x=true;
+					break;
+				}
+				case"no":
+				{
+					replay=false;
+					x=true;
+					break;
+				}
+				default:
+				{
+					System.out.println("Not a choice");
+					x=false;
+					break;
+				}
 
-			case"yes":
-			{
-				replay=true;
-				break;
-			}
-			case"no":
-			{
-				replay=false;
-				break;
-			}
-			default:
-			{
-				System.out.println("Not a choice");
-			}
-
-			}
+				}
+			}while(x=false);
+			
 		}while(replay=true);
 	}
 }
