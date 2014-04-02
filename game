@@ -14,8 +14,8 @@ public class mainClass {
 		String input;
 		Boolean replay, even, x, y;
 		Random random = new Random();
-		
-
+		replay = true;
+	
 		do{
 			total++;
 			System.out.println("Im thinking of a number.. can you guess if its even or odd?");
@@ -100,7 +100,7 @@ public class mainClass {
 				}
 			}while(x=false);
 			
-		}while(replay=true);
+		}while(replay);
 	}
 }
 
